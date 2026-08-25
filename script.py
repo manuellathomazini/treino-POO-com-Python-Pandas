@@ -1,3 +1,5 @@
+import pandas as pd
+
 #criando a classe principal
 class Funcionario:
     def __init__(self, nome, taxa_desc, sal):
@@ -32,3 +34,19 @@ funcionarios = [f1, f2, f3, f4, f5]
 #laço de repetição para apresentar os resultados de cada objeto
 for f in funcionarios:
     print(f.relatorio())
+
+#criando lista de dados de cada funcionário em formato de dicionário para a leitura do pandas
+dados = []
+for f in funcionarios:
+    linha = {
+        'Funcionário': f.nome,
+        'Taxa de desconto': f.taxa_desc,
+        'Salário bruto': f.sal,
+        'Valor descontado': f.calc_desc(),
+        'Salário final': f.sal_final()
+    }
+    dados.append(linha)
+
+#criando DataFrame
+df = pd.DataFrame(dados)
+print(df)
